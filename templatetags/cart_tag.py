@@ -5,7 +5,7 @@ from django import template
 register = template.Library()
 
 @register.filter()
-def cart_proxy(cart: SingleCart | MultiCart, func_name, *args):
+def cart_proxy(cart: MultiCart, func_name, *args):
     if len(args) > 0:
         return cart.__getattribute__(func_name).__call__(args)
     return cart.__getattribute__(func_name).__call__()
